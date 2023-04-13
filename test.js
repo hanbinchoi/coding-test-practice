@@ -1,25 +1,18 @@
-function solution(n) {
-  var answer = [];
-  for (let i = 2; i <= n; i++) {
-    if (n % i == 0) {
-      answer.push(i);
+function solution(sides) {
+  var answer = 0;
+  const max_index = sides.indexOf(Math.max(...sides));
+  for (let i = 0; i < sides.length; i++) {
+    if (i === max_index) {
+      continue;
+    } else {
+      answer += sides[i];
     }
   }
-  console.log(answer);
-  let k = [];
-  answer.forEach((element) => {
-    let i = 2;
-    while (i != element + 1) {
-      if (element % i == 0) {
-        if (element === i) {
-          k.push(i);
-        } else {
-          break;
-        }
-      }
-      i++;
-    }
-  });
-  return k;
+  console.log(answer, sides[max_index]);
+  if (answer <= sides[max_index]) {
+    return 2;
+  } else {
+    return 1;
+  }
 }
-console.log(solution(8));
+console.log(solution([1, 2, 3]));
