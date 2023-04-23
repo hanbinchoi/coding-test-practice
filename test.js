@@ -1,28 +1,23 @@
-function solution(lines) {
-  var answer = 0;
-  let lineMap = new Array(200); // 선분들이 놓일 공간
-  lineMap.fill(0);
-
-  for (let i = 0; i < 3; i++) {
-    let left = lines[i][0];
-    let right = lines[i][1];
-
-    for (let j = left; j < right; j++) {
-      lineMap[j + 100] += 1;
+function solution(id_pw, db) {
+  var answer = "";
+  for (i of db) {
+    if (i[0] === id_pw[0]) {
+      if (i[1] === id_pw[1]) {
+        return "login";
+      } else {
+        return "wrong pw";
+      }
     }
   }
-  for (let i in lineMap) {
-    if (lineMap[i] > 1) {
-      answer += 1;
-    }
-  }
-
-  return answer;
+  return "fail";
 }
 console.log(
-  solution([
-    [0, 5],
-    [3, 9],
-    [1, 10],
-  ])
+  solution(
+    ["meosseugi", "1234"],
+    [
+      ["rardss", "123"],
+      ["yyoom", "1234"],
+      ["meosseugi", "1234"],
+    ]
+  )
 );
