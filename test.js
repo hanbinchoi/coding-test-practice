@@ -1,23 +1,24 @@
-function solution(id_pw, db) {
+function solution(bin1, bin2) {
   var answer = "";
-  for (i of db) {
-    if (i[0] === id_pw[0]) {
-      if (i[1] === id_pw[1]) {
-        return "login";
-      } else {
-        return "wrong pw";
-      }
+  let sum = parseInt(bin1) + parseInt(bin2);
+  sum = "" + sum;
+  console.log(sum);
+  let k = 0;
+  for (let i = sum.length - 1; i >= 0; i--) {
+    let index = parseInt(k) + parseInt(sum[i]);
+    console.log(index);
+    if (index === 0 || index === 1) {
+      answer += index;
+      k = "0";
+    } else {
+      answer += index % 2;
+      k = "1";
     }
+    console.log("ar=" + answer);
   }
-  return "fail";
+  if (k === "1") {
+    answer += "1";
+  }
+  return answer.split("").reverse().join("");
 }
-console.log(
-  solution(
-    ["meosseugi", "1234"],
-    [
-      ["rardss", "123"],
-      ["yyoom", "1234"],
-      ["meosseugi", "1234"],
-    ]
-  )
-);
+console.log(solution("100001", "1010101"));
