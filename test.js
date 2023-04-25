@@ -1,24 +1,15 @@
-function solution(bin1, bin2) {
-  var answer = "";
-  let sum = parseInt(bin1) + parseInt(bin2);
-  sum = "" + sum;
-  console.log(sum);
-  let k = 0;
-  for (let i = sum.length - 1; i >= 0; i--) {
-    let index = parseInt(k) + parseInt(sum[i]);
-    console.log(index);
-    if (index === 0 || index === 1) {
-      answer += index;
-      k = "0";
-    } else {
-      answer += index % 2;
-      k = "1";
-    }
-    console.log("ar=" + answer);
+function solution(common) {
+  var answer = 0;
+  let d = false;
+  if (common[2] - common[1] === common[1] - common[0]) d = true;
+  else d = false;
+
+  if (d) {
+    return common[common.length - 1] + (common[2] - common[1]);
+  } else {
+    return common[common.length - 1] * (common[2] / common[1]);
   }
-  if (k === "1") {
-    answer += "1";
-  }
-  return answer.split("").reverse().join("");
+  return answer;
 }
-console.log(solution("100001", "1010101"));
+
+console.log(solution([1, 2, 3, 4]));

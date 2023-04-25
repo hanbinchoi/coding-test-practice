@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
+    <title>Vanilla Challenge</title>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
   </head>
+
   <body>
-    <div id="my_div">
-      안녕하세요? 만나서 반가워요.
-      <span style="display: none">숨겨진 텍스트</span>
-    </div>
-    <script>
-      const innerHtmlTest = document.getElementById("my_div");
-      console.log(innerHtmlTest.innerHTML);
-
-      const innerTextTest = document.getElementById("my_div");
-      console.log(innerTextTest.innerText);
-
-      const textContentTest = document.getElementById("my_div");
-      console.log(textContentTest.textContent);
-    </script>
+    <h1>Random Number Game</h1>
+    <form id="range-number">
+      <span>Generate a number between 0 and </span><input type="number" />
+    </form>
+    <form id="guess-number">
+      Guess the number: <input type="number" />
+      <input id="play" type="button" value="play!" />
+    </form>
+    <div id="chose"></div>
+    <div id="result"></div>
+    <script src="src/index.js"></script>
   </body>
 </html>
