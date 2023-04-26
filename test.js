@@ -1,15 +1,7 @@
-function solution(common) {
-  var answer = 0;
-  let d = false;
-  if (common[2] - common[1] === common[1] - common[0]) d = true;
-  else d = false;
-
-  if (d) {
-    return common[common.length - 1] + (common[2] - common[1]);
-  } else {
-    return common[common.length - 1] * (common[2] / common[1]);
-  }
+function solution(my_string, overwrite_string, s) {
+  var answer =
+    my_string.slice(0, s) +
+    overwrite_string +
+    my_string.slice(s + overwrite_string.length);
   return answer;
 }
-
-console.log(solution([1, 2, 3, 4]));
