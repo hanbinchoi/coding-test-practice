@@ -1,3 +1,4 @@
+// 백준 문제풀이용
 let fs = require("fs");
 let input = fs.readFileSync("./ex.txt").toString().split("\n");
 
@@ -10,7 +11,7 @@ let price = input[2].split(" ").map(BigInt);
 // 총 비용 -> 초기값으로 첫 도시에서 무조건 지불해야할 기름비 할당
 let totalPrice = price[0] * distance[0];
 
-// 최소 주유 비용
+// 최소 주유 비용 -> 초기에는 첫번째 도시 가격으로 셋팅
 let minPrice = price[0];
 
 // 현재 주유비가 다음 도시의 주유비 보다 싸면 현재도시에서 처리

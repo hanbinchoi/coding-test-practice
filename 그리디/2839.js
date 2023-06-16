@@ -1,19 +1,24 @@
+// 백준 문제풀이용 코드
 let fs = require("fs");
 let input = fs.readFileSync("./ex.txt").toString().split("\n");
 
+// 입력받은 n
 let n = Number(input[0]);
-let answer = 0;
-let flag = false;
+// 가지고 가는 봉지 수
+let count = 0;
+let flag = true;
+
 while (n >= 0) {
-  if (n === 0 || n % 5 === 0) {
-    answer += parseInt(n / 5);
-    console.log(answer);
-    flag = true;
+  // 만약 5로 나눠지거나 0 이면
+  if (n % 5 == 0 || n === 0) {
+    // count는 5로 나눈값 더해줌
+    count += n / 5;
+    console.log(count);
+    flag = false;
     break;
   }
-  answer += 1;
+  // 안나눠지면 3빼줌 -> 3크기의 설탕봉지 1개를 챙겼다 -> count도 +1
   n -= 3;
+  count++;
 }
-if (!flag) {
-  console.log(-1);
-}
+flag ? console.log(-1) : null;
