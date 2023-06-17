@@ -19,6 +19,7 @@ for (let i = 1; i < price.length - 1; i++) {
   if (minPrice > price[i]) {
     minPrice = price[i];
   }
+  // 토탈 가격에 현재 주유소에서 주유하는 가격 더해줌
   totalPrice += minPrice * distance[i];
 }
 
