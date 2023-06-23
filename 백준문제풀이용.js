@@ -1,33 +1,28 @@
-function merge(arr, left, mid, right) {
-  let i = left;
-  let j = mid + 1;
-  let k = left; // 결과배열의 인덱스
-  while (i <= mid && j <= right) {
-    if (arr[i] <= arr[j]) sorted[k++] = arr[i++];
-    else sorted[k++] = arr[j++];
+// 정렬된 순서를 유지하면서 배열에 삽입할 가장 왼쪽 인덱스 반환
+function lowerBound(arr, target, start, end) {
+  while (start < end) {
+    let mid = parseInt((start + end) / 2);
+    if (arr[mid] >= target) {
+      end = mid; // 최대한 왼쪽으로 이동
+    } else start = mid + 1;
   }
-  if (i > mid) {
-    for (; j <= right; j++) sorted[k++] = arr[j];
-  } else {
-    for (; i <= mid; i++) sorted[k++] = arr[i];
-  }
-  for (let x = left; x <= right; x++) {
-    arr[x] = sorted[x];
-  }
+  return end;
 }
 
-function mergeSort(arr, left, right) {
-  if (left < right) {
-    let mid = parseInt((left + right) / 2);
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    merge(arr, left, mid, right);
+// 정렬된 순서를 유지하면서 배열에 삽입할 가장 오른쪽 인덱스 반환
+function upperBound(arr, target, start, end) {
+  while (start < end) {
+    let mid = parseInt((start + end) / 2);
+    if (arr[mid > target]) end = mid;
+    else start = mid + 1; // 최대한 오른쪽으로 이동
   }
+  return end;
 }
-let arr = Array.from({ length: 100 }, () => Math.floor(Math.random() * 1000));
-// 임시 정렬 배열 정의
-sorted = Array.from({ length: arr.length }, () => 0);
 
-mergeSort(arr, 0, arr.length - 1);
-
-console.log(arr);
+function countByRange(arr, leftValue, rightValue) {
+  let rightIndex = upperBound(arr, rightValue, 0, arr.length);
+  let leftIndex = lowerBound(arr, leftValue, 0, arr.length);
+  console.log(rightIndex, leftIndex);
+  return rightIndex - leftIndex;
+}
+console.log(countByRange([1, 1, 1], 1, 1));
