@@ -1,28 +1,25 @@
-// 정렬된 순서를 유지하면서 배열에 삽입할 가장 왼쪽 인덱스 반환
-function lowerBound(arr, target, start, end) {
-  while (start < end) {
-    let mid = parseInt((start + end) / 2);
-    if (arr[mid] >= target) {
-      end = mid; // 최대한 왼쪽으로 이동
-    } else start = mid + 1;
+function paveBox(boxes) {
+  // TODO: 여기에 코드를 작성합니다.
+  let answer = 1;
+  let time = 1;
+  let prev = boxes.shift();
+  while (boxes.length !== 0) {
+    let next = boxes.shift();
+    if (prev >= next) {
+      time++;
+      if (answer < time) {
+        answer = time;
+      }
+    } else {
+      prev = next;
+      answer = time;
+      time = 1;
+    }
   }
-  return end;
+  return answer;
 }
 
-// 정렬된 순서를 유지하면서 배열에 삽입할 가장 오른쪽 인덱스 반환
-function upperBound(arr, target, start, end) {
-  while (start < end) {
-    let mid = parseInt((start + end) / 2);
-    if (arr[mid > target]) end = mid;
-    else start = mid + 1; // 최대한 오른쪽으로 이동
-  }
-  return end;
-}
-
-function countByRange(arr, leftValue, rightValue) {
-  let rightIndex = upperBound(arr, rightValue, 0, arr.length);
-  let leftIndex = lowerBound(arr, leftValue, 0, arr.length);
-  console.log(rightIndex, leftIndex);
-  return rightIndex - leftIndex;
-}
-console.log(countByRange([1, 1, 1], 1, 1));
+console.log(paveBox([5, 1, 4, 6]));
+console.log(paveBox([1, 5, 7, 9]));
+console.log(paveBox([80, 30, 40, 55, 66, 21, 8, 25, 44, 77, 92]));
+console.log(paveBox([95, 90, 99, 99, 80, 99]));

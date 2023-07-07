@@ -14,3 +14,29 @@
 
 // [문제 링크]
 // : https://www.acmicpc.net/problem/18353
+
+// 백준 문제풀이용 코드
+let fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./ex.txt";
+let input = fs.readFileSync(filePath).toString().split("\n");
+
+let n = Number(input[0]);
+let nums = new Array(n);
+let dp = new Array(n + 1).fill(1);
+nums = input[1].split(" ").map(Number);
+nums.reverse();
+// 최장 증가 부분 수열
+for (let i = 1; i < n; i++) {
+  for (let j = 0; j <= i; j++) {
+    if (nums[i] > nums[j]) {
+      dp[i] = Math.max(dp[i], dp[j] + 1);
+    }
+    console.log(nums[i], nums[j], dp);
+  }
+}
+let ans = 0;
+console.log(dp);
+for (let i = 0; i <= n; i++) {
+  ans = Math.max(ans, dp[i]);
+}
+console.log(n - ans);
