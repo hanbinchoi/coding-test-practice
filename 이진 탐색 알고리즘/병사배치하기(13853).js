@@ -31,11 +31,9 @@ for (let i = 1; i < n; i++) {
     if (nums[i] > nums[j]) {
       dp[i] = Math.max(dp[i], dp[j] + 1);
     }
-    console.log(nums[i], nums[j], dp);
   }
 }
 let ans = 0;
-console.log(dp);
 for (let i = 0; i <= n; i++) {
   ans = Math.max(ans, dp[i]);
 }
