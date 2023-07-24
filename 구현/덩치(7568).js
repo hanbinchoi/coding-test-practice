@@ -27,9 +27,10 @@ for (let i = 1; i <= n; i++) {
   arr.push(input[i].split(" ").map(Number));
 }
 const newArr = [];
-arr.forEach((ele, idx) => {
+arr.forEach((ele) => {
   // 무게와 키가 둘다 큰 사람이 있는지 확인.
   const bigger = arr.filter((e) => e[0] > ele[0] && e[1] > ele[1]).length;
+  // 등수를 저장해야 하므로 +1
   newArr.push(bigger + 1);
 });
 console.log(newArr.join(" "));
