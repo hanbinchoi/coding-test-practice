@@ -20,19 +20,26 @@ let fs = require("fs");
 const filePath = process.platform === "linux" ? "/dev/stdin" : "./ex.txt";
 let input = fs.readFileSync(filePath).toString().split("\n");
 
-// 개수, 새로운 점수, 랭킹에 올라갈수 있는 개수
+// 개수, 새로운 점수, 랭킹에 들어갈수 있는 개수
 const [n, newP, p] = input.shift().split(" ").map(Number);
+// 랭킹이 비워있는 경우 1등이 되고 프로그램 종료
 if (input.length === 0) {
   console.log(1);
   return;
 }
-// 랭킹
+// 랭킹 리스트
 const rank = input.shift().split(" ").map(Number);
+// 나의 점수보다 높은 랭킹들
 const highRank = rank.filter((ele) => ele >= newP);
 
+// 나의 점수보다 높은 랭킹의 개수가 들어갈 수 있는 개수보다 큰 경우 -1 리턴
 if (highRank.length >= p) console.log(-1);
+// 높은 랭킹의 점수 중 마지막 원소(제일 낮은 점수)가 나의 점수랑 같은 경우
 else if (highRank[highRank.length - 1] === newP)
+  // 높은 랭킹 점수 중 나랑 같은 점수는 제외한 개수의 +1
   console.log(highRank.filter((ele) => ele > newP).length + 1);
+// 높은 랭킹의 점수 중 나랑 중복되는 점수가 없을 경우
 else {
+  // 높은 랭킹의 점수 개수 +1
   console.log(highRank.length + 1);
 }
