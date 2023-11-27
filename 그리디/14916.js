@@ -11,19 +11,32 @@
 // [문제 링크]
 // : https://www.acmicpc.net/problem/14916
 
-let fs = require("fs");
-let input = fs.readFileSync("./ex.txt").toString().split("\n");
+const fs = require("fs");
+const filePath = process.platform === "linux" ? "/dev/stdin" : "./ex.txt";
+const input = fs.readFileSync(filePath).toString().split("\n");
 
-let money = Number(input[0]);
-let answer = 0;
-let k = Math.floor(money / 5);
+//* 메인함수
+// const [n, k] = input[0].split(' ').map((num) => parseInt(num));
+const n = parseInt(input[0]);
 
-while (k > 0) {
-  if ((money - k * 5) % 2 === 0) {
-    answer = k + (money - k * 5) / 2;
-    break;
+let answer = sol(n);
+console.log(answer);
+//* 로직함수
+function sol(n) {
+  let money = n;
+  let answer = 0;
+  divideByFive = Math.floor(money / 5);
+
+  for (let i = divideByFive; i >= 0; i--) {
+    money = money - i * 5;
+    answer += i;
+    if (money % 2 === 0) {
+      answer += money / 2;
+      return answer;
+    }
+    answer = 0;
+    money = n;
   }
-  k--;
-}
 
-console.log(k === 0 ? -1 : answer);
+  return -1;
+}
